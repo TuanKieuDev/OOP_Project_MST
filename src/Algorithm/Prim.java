@@ -51,6 +51,9 @@ public class Prim extends Algorithm  {
 
 	@Override
 	public void execute()	{
+		Long a = new Long(speed);
+		Long b = new Long(speeddown);
+		float sp = a.floatValue()/b.floatValue();
 		FillTransition fill1 = new FillTransition();
 		FillTransition fill2 = new FillTransition();
 		FillTransition fill11 = new FillTransition();
@@ -105,7 +108,7 @@ public class Prim extends Algorithm  {
 			this.EdgeCanAdd.remove(shortestEdge);
 			shortestEdge.highlightEdge(Color.RED);
 			seq0 = new SequentialTransition(fill7, new PauseTransition(Duration.millis(2000)), fill71);
-			seq0.setRate(speed/speeddown);
+			seq0.setRate(sp);
 			seq0.play();
 			new java.util.Timer().schedule( 
 			        new java.util.TimerTask() {
@@ -132,7 +135,7 @@ public class Prim extends Algorithm  {
 			        2000/speed*speeddown
 			);
 			seq1 = new SequentialTransition(fill1, fill2, fill11, fill21);
-			seq1.setRate(speed/speeddown);
+			seq1.setRate(sp);
 			seq1.play();
 			this.descriptionText.setText("T={"+this.root.getIDString()+"}");
 			new java.util.Timer().schedule( 
@@ -169,17 +172,17 @@ public class Prim extends Algorithm  {
 								descriptionText.setText("that edge will form a cycle, so we ignore it");
 				            }
 				        }, 
-				        2000 
+				        2000/speed*speeddown
 				);
 				seq2 = new SequentialTransition(new PauseTransition(Duration.millis(2000)),fill6, fill61);
-				seq2.setRate(speed/speeddown);
+				seq2.setRate(sp);
 				seq2.play();
 				break;
 			}
 			
 			if(this.CurrentVertices.size()==1) {
 				seq3 = new SequentialTransition(new PauseTransition(Duration.millis(4000)), fill4, fill41);
-				seq3.setRate(speed/speeddown);
+				seq3.setRate(sp);
 				new java.util.Timer().schedule( 
 				        new java.util.TimerTask() {
 				            @Override
@@ -192,7 +195,7 @@ public class Prim extends Algorithm  {
 			}
 			else {
 				seq3 = new SequentialTransition(fill4, fill41);
-				seq3.setRate(speed/speeddown);
+				seq3.setRate(sp);
 				line4(shortestEdge);
 			}				
 			seq3.play();
@@ -236,7 +239,7 @@ public class Prim extends Algorithm  {
 				}
 				if(this.CurrentVertices.size()==1) {
 					seq4 = new SequentialTransition(new PauseTransition(Duration.millis(6000)), fill5, fill51);
-					seq4.setRate(speed/speeddown);
+					seq4.setRate(sp);
 					new java.util.Timer().schedule( 
 					        new java.util.TimerTask() {
 					            @Override
@@ -249,7 +252,7 @@ public class Prim extends Algorithm  {
 				}
 				else {
 					seq4 = new SequentialTransition(new PauseTransition(Duration.millis(2000)), fill5, fill51);
-					seq4.setRate(speed/speeddown);
+					seq4.setRate(sp);
 					new java.util.Timer().schedule( 
 					        new java.util.TimerTask() {
 					            @Override

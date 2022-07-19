@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mainPane" prefHeight="606.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller"> 
    <children>
@@ -29,12 +30,15 @@
             <ComboBox fx:id="alBox" layoutX="267.0" layoutY="6.0" onAction="#boxchoose" prefWidth="150.0" />
          </children>
       </AnchorPane>
-      <VBox layoutY="101.0" prefHeight="258.0" prefWidth="99.0">
+      <VBox layoutY="101.0" prefHeight="397.0" prefWidth="99.0">
          <children>
             <Button fx:id="initNewGraph" mnemonicParsing="false" onAction="#initHandle" prefHeight="65.0" prefWidth="99.0" text="Init New Graph" />
             <Button fx:id="reset" mnemonicParsing="false" onAction="#resetHandle" prefHeight="61.0" prefWidth="101.0" text="Reset" />
             <Button fx:id="execute" mnemonicParsing="false" onAction="#execute" prefHeight="65.0" prefWidth="101.0" text="Execute" />
             <Button fx:id="executeAll" mnemonicParsing="false" onAction="#executeAll" prefHeight="63.0" prefWidth="100.0" text="Execute All" />
+            <Button fx:id="exampleGraph" mnemonicParsing="false" onAction="#ExampleGraph" prefHeight="55.0" prefWidth="99.0" text="Generate&#10;example graph&#10;" />
+            <Button fx:id="speedup" mnemonicParsing="false" onAction="#speedup" prefHeight="44.0" prefWidth="99.0" text="Speed up" />
+            <Button fx:id="slowdown" mnemonicParsing="false" onAction="#slowdown" prefHeight="44.0" prefWidth="99.0" text="Slow Down" />
          </children>
       </VBox>
       <AnchorPane fx:id="childPane" layoutX="100.0" layoutY="42.0" prefHeight="571.0" prefWidth="441.0">
@@ -53,7 +57,6 @@
          </children>
       </AnchorPane>
       <VBox fx:id="vBox" layoutX="549.0" layoutY="72.0" prefHeight="349.0" prefWidth="374.0" />
-      <Button fx:id="speedup" layoutY="354.0" mnemonicParsing="false" onAction="#speedup" prefHeight="44.0" prefWidth="99.0" text="Speed up" />
-      <Button fx:id="slowdown" layoutY="398.0" mnemonicParsing="false" onAction="#slowdown" prefHeight="44.0" prefWidth="99.0" text="Slow Down" />
+      <Text fx:id="speedText" layoutX="3.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" wrappingWidth="92.00002034505206" />
    </children>
 </AnchorPane>

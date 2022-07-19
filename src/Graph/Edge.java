@@ -75,7 +75,7 @@ public class Edge extends Path implements Comparable<Edge>, Drawable {
 		}
 	}
 	
-	public Vertex getVerthat(Vertex v) {
+	public Vertex getVerthat(Vertex v) { //pass v parameter 
 		if(this.vertex1==v) return this.vertex2;
 		if(this.vertex2 == v) return this.vertex1; 
 		return null;
@@ -89,18 +89,10 @@ public class Edge extends Path implements Comparable<Edge>, Drawable {
         weightLabel.setLayoutX((this.getVertex1().getCenterX() + this.getVertex2().getCenterX()) / 2);
         weightLabel.setLayoutY((this.getVertex1().getCenterY() + this.getVertex2().getCenterY()) / 2);
 		
-        // Draw the Edge
         this.getElements().add(new MoveTo(this.getVertex1().getCenterX(), this.getVertex1().getCenterY()));
         
 		this.getElements().add(new LineTo(this.getVertex2().getCenterX(), this.getVertex2().getCenterY()));
 		this.setStroke(color);
-//        Line line = new Line();
-//        line.setStartX(this.getVertex1().getCenterX());
-//        line.setStartY(this.getVertex1().getCenterY());
-//        line.setEndX(this.getVertex2().getCenterX());
-//        line.setEndY(this.getVertex2().getCenterY());
-//        line.setStrokeWidth(4);
-//        line.setStroke(Color.PINK);
 	}
 	
 	public void highlightEdge(Color color) {
@@ -113,6 +105,7 @@ public class Edge extends Path implements Comparable<Edge>, Drawable {
 	    ft.play();
 	}
 
+	@Override
 	public Collection<Node> drawableObjects()
 	{
 		return Arrays.asList(this, weightLabel);

@@ -1,7 +1,7 @@
 package Algorithm;
 
 import Graph.*;
-
+import java.lang.*;
 import java.util.PriorityQueue;
 import java.util.List;
 import java.util.ArrayList;
@@ -48,6 +48,9 @@ public class Kruskal extends Algorithm{
 	
 	@Override
 	public void execute() {
+		Long a = new Long(speed);
+		Long b = new Long(speeddown);
+		float sp = a.floatValue()/b.floatValue();
 		FillTransition fill1 = new FillTransition();
 		FillTransition fill2 = new FillTransition();
 		FillTransition fill11 = new FillTransition();
@@ -90,6 +93,7 @@ public class Kruskal extends Algorithm{
 		fill61.setShape(pCode.getLine6());
 		if (this.finished()||(!this.checkConnected()))
 		{
+			if(this.shortestEdges.size()==0) return;
 			Edge shortestEdge = this.shortestEdges.poll();
 			line3(shortestEdge);
 			new java.util.Timer().schedule( 
@@ -112,7 +116,7 @@ public class Kruskal extends Algorithm{
 			        (4000/speed)*speeddown
 			);
 			seq0 = new SequentialTransition(fill3, fill31 ,fill6, fill61, fill7, fill71);
-			seq0.setRate(speed/speeddown);
+			seq0.setRate(sp);
 			seq0.play();
 			return;
 		}
@@ -139,6 +143,7 @@ public class Kruskal extends Algorithm{
 				fill51.setShape(pCode.getLine5());
 				if(this.currentEdges.size()!=1) {
 					seq = new SequentialTransition(fill3, fill4, fill31, fill41, fill5, fill51);
+					seq.setRate(sp);
 					line3(shortestEdge);
 					new java.util.Timer().schedule( 
 					        new java.util.TimerTask() {
@@ -164,7 +169,7 @@ public class Kruskal extends Algorithm{
 				}
 				else {
 					seq = new SequentialTransition(fill1, fill2, fill11, fill21, fill3, fill4, fill31, fill41, fill5, fill51);
-					seq.setRate(speed/speeddown);
+					seq.setRate(sp);
 					line12();
 					new java.util.Timer().schedule( 
 					        new java.util.TimerTask() {
@@ -222,7 +227,7 @@ public class Kruskal extends Algorithm{
 				        (4000/speed)*speeddown 
 				);				
 				seq = new SequentialTransition(fill3, fill4, fill31, fill41, fill6, fill61);
-				seq.setRate(speed/speeddown);
+				seq.setRate(sp);
 				break;
 			}
 		}

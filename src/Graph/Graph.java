@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Graph implements Drawable {
-	private List<Edge> ListEdges;
+	private List<Edge> ListEdges = new ArrayList<Edge>();
 	private List<Vertex> ListVertice = new ArrayList<Vertex>();
 	
 	public Graph(List<Edge> listEdges, List<Vertex> listVertice) {
@@ -20,28 +20,10 @@ public class Graph implements Drawable {
 
 	public Graph() {
 		super();
-		ListEdges = new ArrayList<Edge>();
 	}
 	
 	public void addEdge(Edge e)
 	{
-//		boolean a=true;
-//		boolean b=true;
-//		this.ListEdges.add(e);
-//		for(int i=0; i<this.ListVertice.size(); i++) {
-//			if(this.ListVertice.get(i).getID()==e.getVertex1().getID()) {
-//				a=false;
-//			}
-//			if(this.ListVertice.get(i).getID()==e.getVertex2().getID()) {
-//				b=false;
-//			}
-//		}
-//		if(a==true) {
-//			this.ListVertice.add(e.getVertex1());
-//		}
-//		if(b==true) {
-//			this.ListVertice.add(e.getVertex2());
-//		}
 		this.ListEdges.add(e);
 	}
 	

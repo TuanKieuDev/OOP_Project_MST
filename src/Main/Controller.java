@@ -77,6 +77,10 @@ public class Controller implements Initializable {
 	private Button speedup;
 	@FXML
 	private Button slowdown;
+	@FXML
+	private Text speedText;
+	@FXML
+	private Button exampleGraph;
 	
     private Graph graph;
     private List<Vertex> selectedVertice = new ArrayList<Vertex>();
@@ -92,6 +96,7 @@ public class Controller implements Initializable {
     };
     
 	public EventHandler<MouseEvent> addVertexEvent = new EventHandler<MouseEvent>() {
+		@Override
 		public void handle(MouseEvent event) {
 			if(event.getButton() == MouseButton.PRIMARY && !event.getSource().equals(group)) {
 				ver++;
@@ -107,6 +112,7 @@ public class Controller implements Initializable {
 	};
 	
 	public EventHandler<MouseEvent> addEdgeEvent = new EventHandler<MouseEvent>() {
+		@Override
 		public void handle(MouseEvent event) {
 			System.out.println("Pointed!");
 			Vertex circle = (Vertex) event.getSource();
@@ -147,14 +153,44 @@ public class Controller implements Initializable {
 		
 	}; 
 	
+	@FXML
+	public void ExampleGraph(ActionEvent event) {
+		 for(int i=1; i<4; i++) {
+			 ver++;
+			 Vertex vertex = new Vertex(100, i*100, 18, ver);
+			 addVerToGraph(vertex);
+		 }
+		 for(int i=1; i<4; i++) {
+			 ver++;
+			 Vertex vertex = new Vertex(230, i*100, 18, ver);
+			 addVerToGraph(vertex);
+		 }
+		 Edge edge1 = new Edge(graph.getListVertice().get(0), graph.getListVertice().get(1), 2);
+		 Edge edge2 = new Edge(graph.getListVertice().get(0), graph.getListVertice().get(3), 1);
+		 Edge edge3 = new Edge(graph.getListVertice().get(3), graph.getListVertice().get(4), 3);
+		 Edge edge4 = new Edge(graph.getListVertice().get(1), graph.getListVertice().get(4), 4);
+		 Edge edge5 = new Edge(graph.getListVertice().get(4), graph.getListVertice().get(5), 2);
+		 Edge edge6 = new Edge(graph.getListVertice().get(2), graph.getListVertice().get(5), 3);
+		 Edge edge7 = new Edge(graph.getListVertice().get(1), graph.getListVertice().get(2), 2);
+		 addEdgeToGraph(edge1);
+		 addEdgeToGraph(edge2);
+		 addEdgeToGraph(edge3);
+		 addEdgeToGraph(edge4);
+		 addEdgeToGraph(edge5);
+		 addEdgeToGraph(edge6);
+		 addEdgeToGraph(edge7);
+	}
+	
     @FXML
 	public void speedup(ActionEvent event) {
 		algorithm.speedup();
+		speedText.setText("Speed: " + String.valueOf(2*algorithm.getSpeeddown()/algorithm.getSpeed()) + "second\nper step");
 	}
 	
     @FXML
 	public void slowdown(ActionEvent event) {
 		algorithm.slowdown();
+		speedText.setText("Speed: " + String.valueOf(2*algorithm.getSpeeddown()/algorithm.getSpeed()) + "second\nper step");
 	}
 	
 	public void boxchoose(ActionEvent event) {
@@ -198,7 +234,7 @@ public class Controller implements Initializable {
         System.out.println("ver " + vertex.getID());
         System.out.println(graph.getListVertice().size());
         for(int i=0; i<graph.getListVertice().size(); i++) {
-			System.out.println("run away1 " + graph.getListVertice().get(i).getID());
+			System.out.println("Vertex " + graph.getListVertice().get(i).getID());
 		}
         vertex.setOnMousePressed(addEdgeEvent);
 	}
@@ -278,13 +314,17 @@ public class Controller implements Initializable {
 		public void initialize(URL location, ResourceBundle resources) {
 			System.out.println("Initialize");
 			String[] al = {"Kruskal", "Prim"};
+			speedText.setText("Speed:\n2 seconds\nper step");
+			speedText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 12));
+			speedText.setFill(Color.RED);
 			alBox.setItems(FXCollections.observableArrayList(al));
 			initNewGraph.setStyle("-fx-background-color: violet; -fx-border-color: grey; -fx-border-radius: 5;");
 			reset.setStyle("-fx-background-color: coral; -fx-border-color: grey; -fx-border-radius: 5;");
 			execute.setStyle("-fx-background-color: aqua; -fx-border-color: grey; -fx-border-radius: 5;");
-			executeAll.setStyle("-fx-background-color: beige; -fx-border-color: grey; -fx-border-radius: 5;");
+			executeAll.setStyle("-fx-background-color: turquoise; -fx-border-color: grey; -fx-border-radius: 5;");
 			speedup.setStyle("-fx-background-color: beige; -fx-border-color: grey; -fx-border-radius: 5;");
 			slowdown.setStyle("-fx-background-color: beige; -fx-border-color: grey; -fx-border-radius: 5;");
+			exampleGraph.setStyle("-fx-background-color: B4FF9F; -fx-border-color: grey; -fx-border-radius: 5;");
 			if (this.graph != null) {
 				group.getChildren().addAll(this.graph.drawableObjects());
 				for(Vertex v : this.graph.getListVertice()) {

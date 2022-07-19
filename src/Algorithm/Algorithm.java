@@ -20,7 +20,17 @@ public abstract class Algorithm {
 	protected Text descriptionText = new Text();
 	protected static long speed=1;
 	protected static long speeddown=1;
-	
+
+	public static float getSpeed() {
+		Long a = new Long(speed);
+		return a.floatValue();
+	}
+
+	public static float getSpeeddown() {
+		Long a = new Long(speeddown);
+		return a.floatValue();
+	}
+
 	public void speedup() {
 		speed++;
 	}

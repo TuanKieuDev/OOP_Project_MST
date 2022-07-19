@@ -8,10 +8,10 @@ public class AlgorithmFactory {
 	public static Algorithm algorithmCreate(String algorithmName, Graph graph)
 	{
 		for(int i=0; i<graph.getListVertice().size(); i++) {
-			System.out.println("run away " + graph.getListVertice().get(i).getID());
+			System.out.println("graph vertex " + graph.getListVertice().get(i).getID());
 		}
 		for(int i=0; i<graph.getListEdges().size(); i++) {
-			System.out.println("run out  " + graph.getListEdges().get(i).getWeight());
+			System.out.println("graph weight of edge  " + graph.getListEdges().get(i).getWeight());
 		}
 		algorithmName = algorithmName.toLowerCase();
 		System.out.println(algorithmName);
